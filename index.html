@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Coming Soon Countdown</title>
+
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: Arial, Helvetica, sans-serif;
+    }
+
+    body {
+      height: 100vh;
+      overflow: hidden;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background: linear-gradient(to bottom, #16152d, #23163d);
+      color: #fff;
+      position: relative;
+    }
+
+    /* Stars */
+    body::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background-image:
+        radial-gradient(#ffffff55 1px, transparent 1px),
+        radial-gradient(#ffffff33 1px, transparent 1px);
+      background-size: 120px 120px, 80px 80px;
+      background-position: 0 0, 40px 60px;
+      z-index: 0;
+    }
+
+    .container {
+      text-align: center;
+      z-index: 2;
+    }
+
+    .title {
+      letter-spacing: 8px;
+      font-size: 20px;
+      margin-bottom: 50px;
+      font-weight: 700;
+    }
+
+    .countdown {
+      display: flex;
+      gap: 30px;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+
+    .time-box {
+      text-align: center;
+    }
+
+    .flip-card {
+      width: 150px;
+      height: 140px;
+      background: #2c294b;
+      border-radius: 8px;
+      position: relative;
+      overflow: hidden;
+      box-shadow: 0 10px 15px rgba(0, 0, 0, 0.3);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .flip-card::before {
+      content: "";
+      position: absolute;
+      width: 100%;
+      height: 2px;
+      background: #1a1833;
+      top: 50%;
+      left: 0;
+      transform: translateY(-50%);
+    }
+
+    .flip-card::after,
+    .dot-left {
+      content: "";
+      position: absolute;
+      width: 10px;
+      height: 10px;
+      background: #16152d;
+      border-radius: 50%;
+      top: 50%;
+      transform: translateY(-50%);
+    }
+
+    .flip-card::after {
+      right: -5px;
+    }
+
+    .dot-left {
+      left: -5px;
+    }
+
+    .number {
+      font-size: 72px;
+      font-weight: bold;
+      color: #ff5f87;
+      z-index: 2;
+    }
+
+    .label {
+      margin-top: 20px;
+      letter-spacing: 6px;
+      font-size: 14px;
+      color: #9d9ab8;
+    }
+
+    /* Mountains */
+    .mountains {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      height: 180px;
+      background:
+        polygon(0 100%, 10% 70%, 20% 100%),
+        #2b1f42;
+      z-index: 1;
+    }
+
+    .mountain-layer {
+      position: absolute;
+      bottom: 0;
+      width: 100%;
+      height: 180px;
+      background: #2c1f44;
+      clip-path: polygon(0% 100%,
+          0% 60%,
+          10% 50%,
+          20% 75%,
+          30% 50%,
+          40% 80%,
+          50% 45%,
+          60% 70%,
+          70% 50%,
+          80% 72%,
+          90% 48%,
+          100% 70%,
+          100% 100%);
+    }
+
+    .mountain-layer.two {
+      height: 140px;
+      background: #1f1634;
+      clip-path: polygon(0% 100%,
+          0% 70%,
+          15% 55%,
+          25% 80%,
+          40% 50%,
+          55% 75%,
+          70% 45%,
+          85% 70%,
+          100% 55%,
+          100% 100%);
+    }
+
+    /* Social icons */
+    .socials {
+      margin-top: 80px;
+      display: flex;
+      justify-content: center;
+      gap: 30px;
+      color: #8f8cb0;
+      font-size: 30px;
+    }
+
+    .socials i {
+      cursor: pointer;
+      transition: 0.3s;
+    }
+
+    .socials i:hover {
+      color: #ff5f87;
+      transform: translateY(-3px);
+    }
+
+    @media(max-width:768px) {
+      .flip-card {
+        width: 120px;
+        height: 110px;
+      }
+
+      .number {
+        font-size: 55px;
+      }
+
+      .countdown {
+        gap: 15px;
+      }
+    }
+  </style>
+
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+</head>
+
+<body>
+
+  <div class="container">
+
+    <div class="title">WE’RE LAUNCHING SOON</div>
+
+    <div class="countdown">
+
+      <div class="time-box">
+        <div class="flip-card">
+          <span class="dot-left"></span>
+          <div class="number" id="days">08</div>
+        </div>
+        <div class="label">DAYS</div>
+      </div>
+
+      <div class="time-box">
+        <div class="flip-card">
+          <span class="dot-left"></span>
+          <div class="number" id="hours">23</div>
+        </div>
+        <div class="label">HOURS</div>
+      </div>
+
+      <div class="time-box">
+        <div class="flip-card">
+          <span class="dot-left"></span>
+          <div class="number" id="minutes">55</div>
+        </div>
+        <div class="label">MINUTES</div>
+      </div>
+
+      <div class="time-box">
+        <div class="flip-card">
+          <span class="dot-left"></span>
+          <div class="number" id="seconds">41</div>
+        </div>
+        <div class="label">SECONDS</div>
+      </div>
+
+    </div>
+
+    <div class="socials">
+      <i class="fab fa-facebook-square"></i>
+      <i class="fab fa-pinterest"></i>
+      <i class="fab fa-instagram"></i>
+    </div>
+
+  </div>
+
+  <div class="mountain-layer"></div>
+  <div class="mountain-layer two"></div>
+
+  <script>
+    // Set launch date (8 days from now)
+    const launchDate = new Date().getTime() + (8 * 24 * 60 * 60 * 1000);
+
+    const timer = setInterval(() => {
+
+      const now = new Date().getTime();
+      const distance = launchDate - now;
+
+      const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+      const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+      const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+      const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+      document.getElementById("days").innerHTML =
+        String(days).padStart(2, "0");
+
+      document.getElementById("hours").innerHTML =
+        String(hours).padStart(2, "0");
+
+      document.getElementById("minutes").innerHTML =
+        String(minutes).padStart(2, "0");
+
+      document.getElementById("seconds").innerHTML =
+        String(seconds).padStart(2, "0");
+
+      if (distance < 0) {
+        clearInterval(timer);
+        document.querySelector(".countdown").innerHTML =
+          "<h1>Launched 🚀</h1>";
+      }
+
+    }, 1000);
+  </script>
+
+</body>
+
+</html>
