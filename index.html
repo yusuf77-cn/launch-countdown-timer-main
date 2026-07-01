@@ -265,10 +265,11 @@
     // Set launch date (1 day from now)
     const launchDate = new Date().getTime() + (1 * 24 * 60 * 60 * 10);
 
-    const timer = setInterval(() => {
+    const timer2 = setInterval(() => {
 
       const now = new Date().getTime();
       const distance = launchDate - now;
+       const redirectURL = "https://yusuf77-cn.github.io/clipboard-landing-page-master/";
 
       const days = Math.floor(distance / (1000 * 60 * 60 * 24));
       const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
@@ -287,13 +288,29 @@
       document.getElementById("seconds").innerHTML =
         String(seconds).padStart(2, "0");
 
-      if (distance < 0) {
+      if (distance <= 0) {
         clearInterval(timer);
+
+        // Optional loading text before redirect
         document.querySelector(".countdown").innerHTML =
-          "<h1>Launched 🚀</h1>";
+          "<h1>Launching 🚀</h1>";
+
+        // Redirect after 2 seconds
+        setTimeout(() => {
+          window.location.href = redirectURL;
+        }, 2000);
       }
+      
 
     }, 1000);
+
+      // Set the date you want the countdown to end
+
+        // Website to redirect to
+       
+
+         
+       
   </script>
 
 </body>
